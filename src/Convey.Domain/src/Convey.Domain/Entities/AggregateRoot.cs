@@ -1,8 +1,8 @@
-using Pacco.Services.Ecommerce.Core.Events;
+using Convey.Domain.Events;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pacco.Services.Ecommerce.Core.Entities
+namespace Convey.Domain.Entities
 {
     public abstract class AggregateRoot
     {

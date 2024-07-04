@@ -1,7 +1,7 @@
-using Pacco.Services.Ecommerce.Core.Exceptions;
+using Convey.Domain.Exceptions;
 using System;
 
-namespace Pacco.Services.Ecommerce.Core.Entities
+namespace Convey.Domain.Entities
 {
     public class AggregateId : IEquatable<AggregateId>
     {

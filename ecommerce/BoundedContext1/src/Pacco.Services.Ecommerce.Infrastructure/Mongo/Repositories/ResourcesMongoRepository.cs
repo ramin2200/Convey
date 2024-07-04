@@ -1,3 +1,4 @@
+using Convey.Domain.Entities;
 using Convey.Persistence.MongoDB;
 using MongoDB.Driver;
 using Pacco.Services.Ecommerce.Core.Entities;

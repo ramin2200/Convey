@@ -1,3 +1,4 @@
+using Convey.Domain.Exceptions;
 using System;
 
 namespace Pacco.Services.Ecommerce.Core.Exceptions

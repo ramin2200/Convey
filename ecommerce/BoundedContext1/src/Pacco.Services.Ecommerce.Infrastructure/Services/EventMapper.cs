@@ -1,4 +1,5 @@
 using Convey.CQRS.Events;
+using Convey.Domain.Events;
 using Pacco.Services.Ecommerce.Application.Events;
 using Pacco.Services.Ecommerce.Application.Services;
 using Pacco.Services.Ecommerce.Core.Events;

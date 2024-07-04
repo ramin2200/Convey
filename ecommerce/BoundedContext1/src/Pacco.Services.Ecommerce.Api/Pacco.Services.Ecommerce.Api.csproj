@@ -11,6 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.31">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Convey.Logging\src\Convey.Logging\Convey.Logging.csproj" />
     <ProjectReference Include="..\..\..\..\src\Convey.WebApi\src\Convey.WebApi\Convey.WebApi.csproj" />
     <ProjectReference Include="..\Pacco.Services.Ecommerce.Infrastructure\Pacco.Services.Ecommerce.Infrastructure.csproj" />

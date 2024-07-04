@@ -5,6 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.31" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\..\..\..\src\Convey.CQRS.Queries\src\Convey.CQRS.Queries\Convey.CQRS.Queries.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Discovery.Consul\src\Convey.Discovery.Consul\Convey.Discovery.Consul.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.LoadBalancing.Fabio\src\Convey.LoadBalancing.Fabio\Convey.LoadBalancing.Fabio.csproj" />
@@ -17,6 +22,7 @@
       <ProjectReference Include="..\..\..\..\src\Convey.MessageBrokers\src\Convey.MessageBrokers\Convey.MessageBrokers.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Metrics.AppMetrics\src\Convey.Metrics.AppMetrics\Convey.Metrics.AppMetrics.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Persistence.MongoDB\src\Convey.Persistence.MongoDB\Convey.Persistence.MongoDB.csproj" />
+      <ProjectReference Include="..\..\..\..\src\Convey.persistence.PostgreSQL\src\Convey.persistence.PostgreSQL\Convey.persistence.PostgreSQL.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Persistence.Redis\src\Convey.Persistence.Redis\Convey.Persistence.Redis.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Secrets.Vault\src\Convey.Secrets.Vault\Convey.Secrets.Vault.csproj" />
       <ProjectReference Include="..\..\..\..\src\Convey.Security\src\Convey.Security\Convey.Security.csproj" />

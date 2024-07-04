@@ -14,6 +14,7 @@ using Convey.MessageBrokers.RabbitMQ;
 using Convey.Metrics.AppMetrics;
 using Convey.Persistence.MongoDB;
 using Convey.Persistence.Redis;
+using Convey.persistence.PostgreSQL;
 using Convey.Security;
 using Convey.Tracing.Jaeger;
 using Convey.Tracing.Jaeger.RabbitMQ;
@@ -41,12 +42,14 @@ using Pacco.Services.Ecommerce.Infrastructure.Logging;
 using Pacco.Services.Ecommerce.Infrastructure.Metrics;
 using Pacco.Services.Ecommerce.Infrastructure.Mongo.Documents;
 using Pacco.Services.Ecommerce.Infrastructure.Mongo.Repositories;
+using Pacco.Services.Ecommerce.Infrastructure.PostgreSQL.DBContext;
 using Pacco.Services.Ecommerce.Infrastructure.Services;
 using Pacco.Services.Ecommerce.Infrastructure.Services.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pacco.Services.Ecommerce.Infrastructure.PostgreSQL.Repositories;
 
 namespace Pacco.Services.Ecommerce.Infrastructure
 {
@@ -56,7 +59,7 @@ namespace Pacco.Services.Ecommerce.Infrastructure
         {
             builder.Services.AddSingleton<IEventMapper, EventMapper>();
             builder.Services.AddTransient<IMessageBroker, MessageBroker>();
-            builder.Services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
+            builder.Services.AddTransient<IResourcesRepository, ResourcesRepository>();
             builder.Services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
             builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
@@ -82,6 +85,7 @@ namespace Pacco.Services.Ecommerce.Infrastructure
                 .AddMessageOutbox(o => o.AddMongo())
                 .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
                 .AddMongo()
+                .AddPostgreSQL<AvailabilityContext>()
                 .AddRedis()
                 .AddMetrics()
                 .AddJaeger()

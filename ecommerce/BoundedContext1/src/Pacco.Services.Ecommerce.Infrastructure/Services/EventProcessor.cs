@@ -1,4 +1,5 @@
 using Convey.CQRS.Events;
+using Convey.Domain.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Pacco.Services.Ecommerce.Application.Events;

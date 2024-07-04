@@ -1,3 +1,4 @@
+using Convey.Domain.Events;
 using Pacco.Services.Ecommerce.Core.Entities;
 
 namespace Pacco.Services.Ecommerce.Core.Events

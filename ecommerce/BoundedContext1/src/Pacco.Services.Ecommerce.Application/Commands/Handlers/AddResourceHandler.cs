@@ -21,10 +21,10 @@ namespace Pacco.Services.Ecommerce.Application.Commands.Handlers
 
         public async Task HandleAsync(AddResource command, CancellationToken cancellationToken = default)
         {
-            if (await _repository.ExistsAsync(command.ResourceId))
-            {
-                throw new ResourceAlreadyExistsException(command.ResourceId);
-            }
+            //if (await _repository.ExistsAsync(command.ResourceId))
+            //{
+            //    throw new ResourceAlreadyExistsException(command.ResourceId);
+            //}
 
             var resource = Resource.Create(command.ResourceId, command.Tags);
             await _repository.AddAsync(resource);

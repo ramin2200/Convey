@@ -1,6 +1,6 @@
 using System;
 
-namespace Pacco.Services.Ecommerce.Core.Exceptions
+namespace Convey.Domain.Exceptions
 {
     public abstract class DomainException : Exception
     {

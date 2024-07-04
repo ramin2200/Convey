@@ -4,4 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\src\Convey.Domain\src\Convey.Domain\Convey.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

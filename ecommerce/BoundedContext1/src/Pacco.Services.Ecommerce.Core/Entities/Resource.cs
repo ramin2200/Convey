@@ -1,3 +1,4 @@
+using Convey.Domain.Entities;
 using Pacco.Services.Ecommerce.Core.Events;
 using Pacco.Services.Ecommerce.Core.Exceptions;
 using Pacco.Services.Ecommerce.Core.ValueObjects;
@@ -23,7 +24,10 @@ namespace Pacco.Services.Ecommerce.Core.Entities
             get => _reservations;
             private set => _reservations = new HashSet<Reservation>(value);
         }
-
+        public Resource()
+        {
+            
+        }
         public Resource(Guid id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null,
             int version = 0)
         {

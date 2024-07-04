@@ -1,3 +1,4 @@
+using Convey.Domain.Events;
 using Pacco.Services.Ecommerce.Core.Events;
 using System.Collections.Generic;
 using System.Threading.Tasks;

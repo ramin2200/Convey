@@ -1,3 +1,5 @@
+using Convey.Domain.Exceptions;
+
 namespace Pacco.Services.Ecommerce.Core.Exceptions
 {
     public class MissingResourceTagsException : DomainException

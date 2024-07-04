@@ -1,7 +1,7 @@
 using Convey;
+using Convey.Domain.Exceptions;
 using Convey.WebApi.Exceptions;
 using Pacco.Services.Ecommerce.Application.Exceptions;
-using Pacco.Services.Ecommerce.Core.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Net;

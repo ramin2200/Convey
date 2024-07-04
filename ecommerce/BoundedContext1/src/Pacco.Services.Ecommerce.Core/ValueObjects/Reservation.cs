@@ -2,11 +2,15 @@ using System;
 
 namespace Pacco.Services.Ecommerce.Core.ValueObjects
 {
-    public struct Reservation : IEquatable<Reservation>
+    public class Reservation : IEquatable<Reservation>
     {
         public DateTime DateTime { get; }
         public int Priority { get; }
 
+        public Reservation()
+        {
+            
+        }
         public Reservation(DateTime dateTime, int priority)
             => (DateTime, Priority) = (dateTime, priority);
 

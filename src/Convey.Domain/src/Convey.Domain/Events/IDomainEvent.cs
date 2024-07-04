@@ -1,4 +1,4 @@
-namespace Pacco.Services.Ecommerce.Core.Events
+namespace Convey.Domain.Events
 {
     public interface IDomainEvent
     {

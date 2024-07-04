@@ -1,14 +1,11 @@
+using Convey.Domain.Repository;
 using Pacco.Services.Ecommerce.Core.Entities;
 using System.Threading.Tasks;
 
 namespace Pacco.Services.Ecommerce.Core.Repositories
 {
-    public interface IResourcesRepository
+    public interface IResourcesRepository : IRepository<Resource> 
     {
-        Task<Resource> GetAsync(AggregateId id);
-        Task<bool> ExistsAsync(AggregateId id);
-        Task AddAsync(Resource resource);
-        Task UpdateAsync(Resource resource);
-        Task DeleteAsync(AggregateId id);
+        
     }
 }
