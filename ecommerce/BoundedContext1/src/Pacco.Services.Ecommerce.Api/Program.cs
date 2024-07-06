@@ -30,7 +30,7 @@ namespace Pacco.Services.Ecommerce.Api
                 .ConfigureServices(services => services
                     .AddConvey()
                     .AddWebApi()
-                    .AddApplication()
+                    //.AddApplication()
                     .AddInfrastructure()
                     .Build())
                 .Configure(app => app

@@ -9,11 +9,11 @@ namespace Pacco.Services.Ecommerce.Application
 {
     public static class Extensions
     {
-        public static IConveyBuilder AddApplication(this IConveyBuilder builder)
-            => builder
-                .AddCommandHandlers()
-                .AddEventHandlers()
-                .AddInMemoryCommandDispatcher()
-                .AddInMemoryEventDispatcher();
+        //public static IConveyBuilder AddApplication(this IConveyBuilder builder)
+        //    => builder
+        //        .AddCommandHandlers()
+        //        .AddEventHandlers()
+        //        .AddInMemoryCommandDispatcher()
+        //        .AddInMemoryEventDispatcher();
     }
 }

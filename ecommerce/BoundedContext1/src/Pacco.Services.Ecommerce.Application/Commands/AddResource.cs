@@ -14,5 +14,10 @@ namespace Pacco.Services.Ecommerce.Application.Commands
         public AddResource(Guid resourceId, IEnumerable<string> tags)
             => (ResourceId, Tags) = (resourceId == Guid.Empty ? Guid.NewGuid() : resourceId,
                 tags ?? Enumerable.Empty<string>());
+
+        //public AddResource()
+        //{
+            
+        //}
     }
 }

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="certs\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Remove="module.ecommerce.json" />
+		<Content Include="module.ecommerce.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Convey.Module.Monolithic\src\Convey.Module.Monolithic\Convey.Module.Monolithic.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Convey\src\Convey\Convey.csproj" />
+    <ProjectReference Include="..\Pacco.Services.Ecommerce.Infrastructure\Pacco.Services.Ecommerce.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>

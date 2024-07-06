@@ -58,17 +58,18 @@ namespace Pacco.Services.Ecommerce.Infrastructure
         public static IConveyBuilder AddInfrastructure(this IConveyBuilder builder)
         {
             builder.Services.AddSingleton<IEventMapper, EventMapper>();
-            builder.Services.AddTransient<IMessageBroker, MessageBroker>();
+            //builder.Services.AddTransient<IMessageBroker, MessageBroker>();
             builder.Services.AddTransient<IResourcesRepository, ResourcesRepository>();
             builder.Services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
             builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
-            builder.Services.AddTransient<IEventProcessor, EventProcessor>();
+            //builder.Services.AddTransient<IEventProcessor, EventProcessor>();
+            builder.Services.AddTransient<IEventProcessor, EventProcessorEmpty>();
             builder.Services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
-            builder.Services.AddHostedService<MetricsJob>();
-            builder.Services.AddSingleton<CustomMetricsMiddleware>();
-            builder.Services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
-            builder.Services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
+            //builder.Services.AddHostedService<MetricsJob>();
+            //builder.Services.AddSingleton<CustomMetricsMiddleware>();
+            //builder.Services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
+            //builder.Services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
             builder.Services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
                 .AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
                 .AsImplementedInterfaces()
@@ -76,44 +77,44 @@ namespace Pacco.Services.Ecommerce.Infrastructure
 
             return builder
                 .AddErrorHandler<ExceptionToResponseMapper>()
-                .AddQueryHandlers()
-                .AddInMemoryQueryDispatcher()
-                .AddHttpClient()
-                .AddConsul()
-                .AddFabio()
-                .AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
-                .AddMessageOutbox(o => o.AddMongo())
-                .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
-                .AddMongo()
+                //.AddQueryHandlers()
+                //.AddInMemoryQueryDispatcher()
+                //.AddHttpClient()
+                //.AddConsul()
+                //.AddFabio()
+                //.AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
+                //.AddMessageOutbox(o => o.AddMongo())
+                //.AddExceptionToMessageMapper<ExceptionToMessageMapper>()
+                //.AddMongo()
                 .AddPostgreSQL<AvailabilityContext>()
-                .AddRedis()
-                .AddMetrics()
-                .AddJaeger()
-                .AddJaegerDecorators()
-                .AddHandlersLogging()
-                .AddMongoRepository<ResourceDocument, Guid>("resources")
-                .AddWebApiSwaggerDocs()
-                .AddCertificateAuthentication()
-                .AddSecurity();
+                //.AddRedis()
+                //.AddMetrics()
+                //.AddJaeger()
+                //.AddJaegerDecorators()
+                .AddHandlersLogging();
+                //.AddMongoRepository<ResourceDocument, Guid>("resources");
+                //.AddWebApiSwaggerDocs()
+                //.AddCertificateAuthentication()
+                //.AddSecurity();
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            app.UseErrorHandler()
-                .UseSwaggerDocs()
-                .UseJaeger()
-                .UseConvey()
-                .UsePublicContracts<ContractAttribute>()
-                .UseMetrics()
-                .UseMiddleware<CustomMetricsMiddleware>()
-                .UseCertificateAuthentication()
-                .UseRabbitMq()
-                .SubscribeCommand<AddResource>()
-                .SubscribeCommand<DeleteResource>()
-                .SubscribeCommand<ReleaseResourceReservation>()
-                .SubscribeCommand<ReserveResource>()
-                .SubscribeEvent<CustomerCreated>()
-                .SubscribeEvent<VehicleDeleted>();
+            app//.UseErrorHandler()
+               // .UseSwaggerDocs()
+               // .UseJaeger()
+               // .UseConvey()
+                .UsePublicContracts<ContractAttribute>();
+                // .UseMetrics()
+                //.UseMiddleware<CustomMetricsMiddleware>();
+               // .UseCertificateAuthentication();
+                //.UseRabbitMq()
+                //.SubscribeCommand<AddResource>()
+                //.SubscribeCommand<DeleteResource>()
+                //.SubscribeCommand<ReleaseResourceReservation>()
+                //.SubscribeCommand<ReserveResource>()
+                //.SubscribeEvent<CustomerCreated>()
+                //.SubscribeEvent<VehicleDeleted>();
 
             return app;
         }
