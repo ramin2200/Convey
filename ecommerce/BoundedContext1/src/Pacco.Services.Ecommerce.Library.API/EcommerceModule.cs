@@ -19,8 +19,6 @@ internal class EcommerceModule : IModule
 
     public void Register(IConveyBuilder builder)
     {
-        //builder.AddWebApi();
-        //builder.AddApplication();
         builder.AddInfrastructure();
         builder.Services.AddControllers();
     }
@@ -29,8 +27,5 @@ internal class EcommerceModule : IModule
     {
         app.UseInfrastructure();
         app.UseRouting();
-        //app.UseContracts()
-        //    .Register<CustomerCompletedContract>()
-        //    .Register<CustomerVerifiedContract>();
     }
 }

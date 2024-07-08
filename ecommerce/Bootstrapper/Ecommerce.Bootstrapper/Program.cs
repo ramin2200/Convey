@@ -3,7 +3,8 @@ using Ecommerce.Bootstrapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Convey.Module.Monolithic;
-using Convey.Logging;
+using Monolith.Logging.Logging;
+//using Convey.Logging;
 using Convey.Secrets.Vault;
 
 
@@ -18,8 +19,8 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
             .ConfigureModules()
-            .UseLogging()
-            .UseVault();
+            .UseLogging();
+            //.UseVault();
 }
 
 

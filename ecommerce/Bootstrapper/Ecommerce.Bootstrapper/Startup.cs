@@ -72,6 +72,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Pacco.Services.Ecommerce.Infrastructure.PostgreSQL.Repositories;
+using Monolith.Auth;
+using Monolith.Exceptions.Infrastructure;
+using Monolith.Context.Infrastructure;
+using Monolith.Logging.Logging;
 
 namespace Ecommerce.Bootstrapper;
 
@@ -89,68 +93,41 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         var builder = services.AddConvey();
-        builder.AddModuleInfo(_modules);
-        builder.AddWebApi()
-                .AddCommandHandlers()
-                .AddEventHandlers()
-                .AddInMemoryCommandDispatcher()
-                .AddInMemoryEventDispatcher()
-                //.AddErrorHandler<ExceptionToResponseMapper>()
-                .AddQueryHandlers()
-                .AddInMemoryQueryDispatcher()
-                .AddHttpClient()
-                //.AddConsul()
-                //.AddFabio()
-                //.AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
-                .AddRabbitMq()
-
-                //.AddMessageOutbox(o => o.AddMongo())
-                //.AddExceptionToMessageMapper<ExceptionToMessageMapper>()
-                .AddMongo()
-                //.AddPostgreSQL<AvailabilityContext>()
-                //.AddRedis()
-                //.AddMetrics()
-                //.AddJaeger()
-                //.AddJaegerDecorators()
-                //.AddHandlersLogging()
-                //.AddMongoRepository<ResourceDocument, Guid>("resources")
-                .AddWebApiSwaggerDocs()
-                .AddCertificateAuthentication();
-                //.AddSecurity();
-
-        //services.AddModularInfrastructure(_assemblies, _modules);
+        builder.AddModuleInfo(_modules)
+            .AddAuth(_modules)
+            .AddErrorHandling()
+            .AddContext()
+            .AddCommandHandlers()
+            .AddEventHandlers()
+            .AddInMemoryCommandDispatcher()
+            .AddInMemoryEventDispatcher()
+            .AddQueryHandlers()
+            .AddInMemoryQueryDispatcher()
+            .AddRabbitMq()
+            .AddMongo()
+            .AddLoggingDecorators();
+        
         foreach (var module in _modules)
         {
             module.Register(builder);
         }
-
-        
-
 
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
         logger.LogInformation($"Modules: {string.Join(", ", _modules.Select(x => x.Name))}");
-        //app.UseModularInfrastructure();
-
-        app.UseErrorHandler()
-                .UseSwaggerDocs()
-                //.UseJaeger()
-                .UseConvey()
-                //.UsePublicContracts<ContractAttribute>()
-                //.UseMetrics()
-                //.UseMiddleware<CustomMetricsMiddleware>()
-         .UseCertificateAuthentication();
-        //.UseRabbitMq()
-
+        
+        app.UseConvey();
+        app.UseErrorHandling();
+        app.UseAuth();
+        app.UseContext();
 
         foreach (var module in _modules)
         {
             module.Use(app);
         }
         
-        //app.ValidateContracts(_assemblies);
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();

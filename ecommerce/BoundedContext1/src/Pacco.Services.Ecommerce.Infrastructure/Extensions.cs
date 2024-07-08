@@ -1,50 +1,17 @@
 ﻿using Convey;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Events;
-using Convey.CQRS.Queries;
-using Convey.Discovery.Consul;
-using Convey.Docs.Swagger;
-using Convey.HTTP;
-using Convey.LoadBalancing.Fabio;
 using Convey.MessageBrokers;
-using Convey.MessageBrokers.CQRS;
-using Convey.MessageBrokers.Outbox;
-using Convey.MessageBrokers.Outbox.Mongo;
-using Convey.MessageBrokers.RabbitMQ;
-using Convey.Metrics.AppMetrics;
-using Convey.Persistence.MongoDB;
-using Convey.Persistence.Redis;
 using Convey.persistence.PostgreSQL;
-using Convey.Security;
-using Convey.Tracing.Jaeger;
-using Convey.Tracing.Jaeger.RabbitMQ;
-using Convey.WebApi;
-using Convey.WebApi.CQRS;
-using Convey.WebApi.Security;
-using Convey.WebApi.Swagger;
 using Elasticsearch.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Pacco.Services.Ecommerce.Application;
-using Pacco.Services.Ecommerce.Application.Commands;
 using Pacco.Services.Ecommerce.Application.Events;
-using Pacco.Services.Ecommerce.Application.Events.External;
 using Pacco.Services.Ecommerce.Application.Services;
-using Pacco.Services.Ecommerce.Application.Services.Clients;
 using Pacco.Services.Ecommerce.Core.Repositories;
 using Pacco.Services.Ecommerce.Infrastructure.Contexts;
-using Pacco.Services.Ecommerce.Infrastructure.Decorators;
-using Pacco.Services.Ecommerce.Infrastructure.Exceptions;
-using Pacco.Services.Ecommerce.Infrastructure.Jaeger;
-using Pacco.Services.Ecommerce.Infrastructure.Logging;
-using Pacco.Services.Ecommerce.Infrastructure.Metrics;
-using Pacco.Services.Ecommerce.Infrastructure.Mongo.Documents;
-using Pacco.Services.Ecommerce.Infrastructure.Mongo.Repositories;
 using Pacco.Services.Ecommerce.Infrastructure.PostgreSQL.DBContext;
 using Pacco.Services.Ecommerce.Infrastructure.Services;
-using Pacco.Services.Ecommerce.Infrastructure.Services.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +27,7 @@ namespace Pacco.Services.Ecommerce.Infrastructure
             builder.Services.AddSingleton<IEventMapper, EventMapper>();
             //builder.Services.AddTransient<IMessageBroker, MessageBroker>();
             builder.Services.AddTransient<IResourcesRepository, ResourcesRepository>();
-            builder.Services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
+            //builder.Services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
             builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
             //builder.Services.AddTransient<IEventProcessor, EventProcessor>();
@@ -74,48 +41,15 @@ namespace Pacco.Services.Ecommerce.Infrastructure
                 .AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
             return builder
-                .AddErrorHandler<ExceptionToResponseMapper>()
-                //.AddQueryHandlers()
-                //.AddInMemoryQueryDispatcher()
-                //.AddHttpClient()
-                //.AddConsul()
-                //.AddFabio()
-                //.AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
-                //.AddMessageOutbox(o => o.AddMongo())
-                //.AddExceptionToMessageMapper<ExceptionToMessageMapper>()
-                //.AddMongo()
-                .AddPostgreSQL<AvailabilityContext>()
-                //.AddRedis()
-                //.AddMetrics()
-                //.AddJaeger()
-                //.AddJaegerDecorators()
-                .AddHandlersLogging();
-                //.AddMongoRepository<ResourceDocument, Guid>("resources");
-                //.AddWebApiSwaggerDocs()
-                //.AddCertificateAuthentication()
-                //.AddSecurity();
+                .AddPostgreSQL<AvailabilityContext>();
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            app//.UseErrorHandler()
-               // .UseSwaggerDocs()
-               // .UseJaeger()
-               // .UseConvey()
-                .UsePublicContracts<ContractAttribute>();
-                // .UseMetrics()
-                //.UseMiddleware<CustomMetricsMiddleware>();
-               // .UseCertificateAuthentication();
-                //.UseRabbitMq()
-                //.SubscribeCommand<AddResource>()
-                //.SubscribeCommand<DeleteResource>()
-                //.SubscribeCommand<ReleaseResourceReservation>()
-                //.SubscribeCommand<ReserveResource>()
-                //.SubscribeEvent<CustomerCreated>()
-                //.SubscribeEvent<VehicleDeleted>();
-
             return app;
         }
 

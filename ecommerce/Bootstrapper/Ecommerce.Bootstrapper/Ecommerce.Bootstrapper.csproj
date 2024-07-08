@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,6 +17,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Convey.Logging\src\Convey.Logging\Convey.Logging.csproj" />
     <ProjectReference Include="..\..\..\src\Convey.Module.Monolithic\src\Convey.Module.Monolithic\Convey.Module.Monolithic.csproj" />
+    <ProjectReference Include="..\..\..\src\Monolith.Auth\src\Monolith.Auth\Monolith.Auth.csproj" />
+    <ProjectReference Include="..\..\..\src\Monolith.Context\src\Monolith.Context\Monolith.Context.csproj" />
+    <ProjectReference Include="..\..\..\src\Monolith.Exceptions\src\Monolith.Exceptions\Monolith.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\src\Monolith.Logging\src\Monolith.Logging\Monolith.Logging.csproj" />
     <ProjectReference Include="..\..\BoundedContext1\src\Pacco.Services.Ecommerce.Library.API\Pacco.Services.Ecommerce.Library.API.csproj" />
   </ItemGroup>
 

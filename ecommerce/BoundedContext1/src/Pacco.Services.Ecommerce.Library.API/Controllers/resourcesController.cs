@@ -5,6 +5,7 @@ using Pacco.Services.Ecommerce.Application.Commands;
 using Pacco.Services.Ecommerce.Library.API;
 using Swashbuckle.AspNetCore.Annotations;
 using Convey.CQRS.Commands;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pacco.Services.Ecommerce.Library.API.Controllers
 {
@@ -30,7 +31,7 @@ namespace Pacco.Services.Ecommerce.Library.API.Controllers
             })
             .ToArray();
         }
-
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult> Post(AddResource addResource)
         {
