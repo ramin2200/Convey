@@ -76,6 +76,7 @@ using Monolith.Auth;
 using Monolith.Exceptions.Infrastructure;
 using Monolith.Context.Infrastructure;
 using Monolith.Logging.Logging;
+using ARCRelay.MassTransit;
 
 namespace Ecommerce.Bootstrapper;
 
@@ -105,8 +106,10 @@ public class Startup
             .AddInMemoryQueryDispatcher()
             .AddRabbitMq()
             .AddMongo()
-            .AddLoggingDecorators();
-        
+            .AddLoggingDecorators()
+            .AddMassTransit();
+
+
         foreach (var module in _modules)
         {
             module.Register(builder);

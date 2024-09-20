@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\ARCRelay.MassTransit\src\ARCRelay.MassTransit\ARCRelay.MassTransit.csproj" />
     <ProjectReference Include="..\..\..\src\Convey.Logging\src\Convey.Logging\Convey.Logging.csproj" />
     <ProjectReference Include="..\..\..\src\Convey.Module.Monolithic\src\Convey.Module.Monolithic\Convey.Module.Monolithic.csproj" />
     <ProjectReference Include="..\..\..\src\Monolith.Auth\src\Monolith.Auth\Monolith.Auth.csproj" />
