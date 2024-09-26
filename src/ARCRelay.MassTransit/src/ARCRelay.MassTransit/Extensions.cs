@@ -1,6 +1,8 @@
 using Convey;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
+//using Pacco.Services.Ecommerce.Library.API.mass;
+using System.Reflection;
 
 namespace ARCRelay.MassTransit;
 
@@ -15,22 +17,23 @@ public static class Extensions
         builder.Services.AddOptions<SqlTransportOptions>().Configure(options =>
         {
             options.Host = "localhost";
-            options.Database = "sample";
+            options.Database = "postgres";
             options.Schema = "transport";
-            options.Role = "transport";
-            options.Username = "masstransit";
-            options.Password = "H4rd2Gu3ss!";
+            //options.Role = "transport";
+            options.Username = "postgres";
+            options.Password = "root";
 
             // credentials to run migrations
-            options.AdminUsername = "migration-user";
-            options.AdminPassword = "H4rderTooGu3ss!!";
+            //options.AdminUsername = "migration-user";
+            //options.AdminPassword = "H4rderTooGu3ss!!";
         });
         // MassTransit will run the migrations on start up
         builder.Services.AddPostgresMigrationHostedService();
         builder.Services.AddMassTransit(x =>
         {
+            Assembly applicationAssembly = Assembly.Load("Pacco.Services.Ecommerce.Library.API");
             // elided...
-
+            x.AddConsumers(applicationAssembly);
             x.UsingPostgres((context, cfg) =>
             {
                 cfg.ConfigureEndpoints(context);
