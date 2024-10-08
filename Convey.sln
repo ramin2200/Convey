@@ -285,6 +285,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ramin.Services.Products.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ramin.Services.Products.Core", "ecommerce\Product\src\Ramin.Services.Product.Core\Ramin.Services.Products.Core.csproj", "{2A36823B-6280-4967-8DFC-F2446D9B4E48}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{DBBCB898-B5E9-4E30-97A7-E68974A33A2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogs", "Catalogs", "{0BB12344-D776-4277-93C7-751F00CF428D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1098,6 +1102,7 @@ Global
 		{63AE5CC9-8E3A-483C-9C4F-10CE092880AE} = {06A63CBE-F835-4525-B0AE-0B9D918978FC}
 		{F89BBAE2-7328-4F04-A383-286C950F3231} = {06A63CBE-F835-4525-B0AE-0B9D918978FC}
 		{2A36823B-6280-4967-8DFC-F2446D9B4E48} = {06A63CBE-F835-4525-B0AE-0B9D918978FC}
+		{0BB12344-D776-4277-93C7-751F00CF428D} = {DBBCB898-B5E9-4E30-97A7-E68974A33A2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3CCF644-0A79-4D5E-87D8-D90975CA57EF}
