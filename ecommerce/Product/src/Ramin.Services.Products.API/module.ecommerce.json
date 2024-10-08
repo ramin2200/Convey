@@ -1,0 +1,8 @@
+{
+  "ecommerce": {
+    "module": {
+      "name": "ecommerce",
+      "enabled": true
+    }
+  }
+}

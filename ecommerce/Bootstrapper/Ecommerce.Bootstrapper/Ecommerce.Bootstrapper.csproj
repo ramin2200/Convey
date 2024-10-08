@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.31">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
@@ -22,6 +26,7 @@
     <ProjectReference Include="..\..\..\src\Monolith.Exceptions\src\Monolith.Exceptions\Monolith.Exceptions.csproj" />
     <ProjectReference Include="..\..\..\src\Monolith.Logging\src\Monolith.Logging\Monolith.Logging.csproj" />
     <ProjectReference Include="..\..\BoundedContext1\src\Pacco.Services.Ecommerce.Library.API\Pacco.Services.Ecommerce.Library.API.csproj" />
+    <ProjectReference Include="..\..\Product\src\Ramin.Services.Products.API\Ramin.Services.Products.API.csproj" />
   </ItemGroup>
 
 </Project>
