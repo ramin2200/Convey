@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Entities\**" />
+      <Compile Remove="Events\**" />
+      <Compile Remove="Exceptions\**" />
+      <Compile Remove="Repositories\**" />
+      <Compile Remove="ValueObjects\**" />
+      <EmbeddedResource Remove="Entities\**" />
+      <EmbeddedResource Remove="Events\**" />
+      <EmbeddedResource Remove="Exceptions\**" />
+      <EmbeddedResource Remove="Repositories\**" />
+      <EmbeddedResource Remove="ValueObjects\**" />
+      <None Remove="Entities\**" />
+      <None Remove="Events\**" />
+      <None Remove="Exceptions\**" />
+      <None Remove="Repositories\**" />
+      <None Remove="ValueObjects\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\Convey.Domain\src\Convey.Domain\Convey.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
